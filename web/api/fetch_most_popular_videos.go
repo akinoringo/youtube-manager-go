@@ -1,7 +1,6 @@
 package api
 
 import (
-	"context"
 	"github.com/labstack/echo"
 	"github.com/sirupsen/logrus"
 	"github.com/valyala/fasthttp"
@@ -12,10 +11,7 @@ import (
 
 func FetchMostPupularVideos() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		key := os.Getenv("API_KEY")
-
-		ctx := context.Background()
-		yts, err := youtube.NewService(ctx, option.WithAPIKey(key))
+		yts := c.Get("yts").(*youtube.Service)
 
 		if err != nil {
 			logrus.Fatalf("Error creating new Youtube service; %v", err)
