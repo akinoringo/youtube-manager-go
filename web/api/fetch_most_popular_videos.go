@@ -4,18 +4,12 @@ import (
 	"github.com/labstack/echo"
 	"github.com/sirupsen/logrus"
 	"github.com/valyala/fasthttp"
-	"google.golang.org/api/option"
 	"google.golang.org/api/youtube/v3"
-	"os"
 )
 
 func FetchMostPupularVideos() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		yts := c.Get("yts").(*youtube.Service)
-
-		if err != nil {
-			logrus.Fatalf("Error creating new Youtube service; %v", err)
-		}
 
 		call := yts.Videos.List([]string{"id", "snippet"}).Chart("mostPopular").MaxResults(3)
 
