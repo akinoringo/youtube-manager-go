@@ -19,7 +19,7 @@ func DatabaseService() echo.MiddlewareFunc {
 			session, _ := databases.Connect()
 			d := DatabaseClient{DB: session}
 
-			defer d.DB.close()
+			defer d.DB.Close()
 
 			d.DB.LogMode(true)
 
