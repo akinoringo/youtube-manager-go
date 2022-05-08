@@ -3,7 +3,6 @@ module youtube-manager-go
 go 1.17
 
 require (
-	firebase.google.com/go v3.13.0+incompatible
 	firebase.google.com/go/v4 v4.8.0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/joho/godotenv v1.4.0

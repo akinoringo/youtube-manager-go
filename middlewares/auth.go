@@ -2,7 +2,7 @@ package middlewares
 
 import (
 	"context"
-	"firebase.google.com/go/auth"
+	"firebase.google.com/go/v4/auth"
 	"github.com/labstack/echo"
 	"github.com/valyala/fasthttp"
 	"strings"
@@ -28,7 +28,7 @@ func FirebaseGuard() echo.MiddlewareFunc {
 			authClient := c.Get("firebase").(*auth.Client)
 			jwtToken, err := VerifyFirebaseIdToken(c, authClient)
 			if err != nil {
-				c.JSON(fasthttp.StatusUnauthorized, "Not Authorized")
+				return c.JSON(fasthttp.StatusUnauthorized, "Not Authorized")
 			}
 
 			c.Set("auth", jwtToken)
